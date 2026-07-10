@@ -22,3 +22,18 @@ btnToggle.addEventListener("click", function () {
     userName.textContent = curObj.name;
     userGender.textContent = curObj.gender;
 });
+var btnrandom = document.getElementById("btn-random-user");
+btnrandom.addEventListener("click", function () {
+
+    fetch("https://randomuser.me/api/")
+        .then(function(data){
+            return data.json();
+        })
+        .then(function(jsonResponse){
+            var curUserObject = jsonResponse.results[0];
+                userImage.src = curUserObject.picture.large;
+                userName.textContent = curUserObject.name.title + " " + curUserObject.name.first + " " + curUserObject.name.last;
+                userGender.textContent = curUserObject.gender; 
+        });
+
+});
